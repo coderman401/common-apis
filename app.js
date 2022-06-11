@@ -52,20 +52,24 @@ const downloadImageFromURL = (request, response, next) => {
 const getMetadataFromUrl = (request, response, next) => {
     const req = require('request').defaults({ encoding: null });
     const url = request.body.url;
-    req.get(url, function (error, res, body) {
-        if (!error && res.statusCode == 200) {
-            const doc = domino.createWindow(body?.toString()).document;
-            const metadata = getMetadata(doc, url);
-            const data = {
-                status: true,
-                data: metadata,
-            };
-            response.json(data);
-            response.send(metadata);
-        } else {
-            response.json({ status: false, error });
-        }
-    });
+    try {
+        req.get(url, function (error, res, body) {
+            if (!error && res.statusCode == 200) {
+                const doc = domino.createWindow(body?.toString()).document;
+                const metadata = getMetadata(doc, url);
+                const data = {
+                    status: true,
+                    data: metadata,
+                };
+                response.json(data);
+                response.send(metadata);
+            } else {
+                response.json({ status: false, error });
+            }
+        });
+    } catch (e) {
+        response.json({ status: false, e });
+    }
 }
 
 
