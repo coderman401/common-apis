@@ -2,16 +2,18 @@
     "name": "commonapis",
     "version": "1.0.0",
     "description": "collection of common apis",
-    "main": "src/server.js",
+    "main": "app.js",
     "dependencies": {
         "archiver": "^3.1.1",
         "body-parser": "^1.19.0",
         "child_process": "^1.0.2",
         "cors": "^2.8.5",
         "debug": "^4.1.1",
+        "domino": "^2.1.6",
         "ejs": "^3.0.1",
         "express": "^4.17.1",
         "https": "^1.0.0",
+        "page-metadata-parser": "^1.1.4",
         "request": "^2.88.2"
     },
     "scripts": {
